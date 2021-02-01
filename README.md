@@ -62,6 +62,33 @@ dotIndicator.setWithViewPager(viewPager)
 ## Preview
 When i sliding the view pager.
 <a href="url"><img src="https://github.com/fajaragungpramana/assets/blob/master/DotsIndicator/GIF-210202_004200.gif" align="left" height="640" width="320" ></a>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 ## Documentation
 Attribute for FieldInput
