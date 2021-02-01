@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DotsIndicator">
+        <attr name="dotColor" format="color|reference" />
+        <attr name="dotCount" format="integer" />
+        <attr name="dotSelectedColor" format="color|reference" />
+        <attr name="dotSize" format="dimension|reference" />
+        <attr name="dotSpacing" format="dimension|reference" />
+    </declare-styleable>
+</resources>
