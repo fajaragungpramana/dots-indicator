@@ -9,7 +9,7 @@ import androidx.viewpager.widget.PagerAdapter
 
 class Pager(private val context: Context) : PagerAdapter() {
 
-    override fun getCount() = 8
+    override fun getCount() = 5
 
     override fun isViewFromObject(view: View, `object`: Any) = view == `object` as LinearLayout
 
