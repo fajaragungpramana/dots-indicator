@@ -91,7 +91,7 @@ When i sliding the view pager.
 </br>
 
 ## Documentation
-Attribute for FieldInput
+Attribute for DotsIndicator
 | Attribute Name | Default Value | Description |
 |----------------|---------------|-------------|
 | dotColor | #CCCCCC | Set dot color |
