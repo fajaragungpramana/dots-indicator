@@ -18,7 +18,7 @@ allProjects {
 Add the dependency:
 ```gradle
 dependencies {
-	implementation 'com.github.fajaragungpramana:dots-indicator:0.0.2'
+	implementation 'com.github.fajaragungpramana:dots-indicator:0.0.3'
 }
 ```
 
