@@ -75,8 +75,6 @@ abstract class BaseDots(
     }
 
     protected fun onDotSelected(viewPager: ViewPager?) {
-        onDotSelectedPosition(0)
-
         viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {}
@@ -95,7 +93,7 @@ abstract class BaseDots(
         })
     }
 
-    private fun onDotSelectedPosition(position: Int) {
+    protected fun onDotSelectedPosition(position: Int) {
         repeat(imageViewList.size) {
             (imageViewList[it].background as GradientDrawable).setColor(
                 if (it == position) dotSelectedColor ?: 0 else dotColor ?: 0
