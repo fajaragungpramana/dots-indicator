@@ -18,7 +18,7 @@ allProjects {
 Add the dependency:
 ```gradle
 dependencies {
-	implementation 'com.github.fajaragungpramana:dots-indicator:0.0.1'
+	implementation 'com.github.fajaragungpramana:dots-indicator:0.0.2'
 }
 ```
 
@@ -26,21 +26,8 @@ dependencies {
 Define a view in your layout file:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
-
-    <com.github.fajaragungpramana.dotsindicator.DotsIndicator
-        android:id="@+id/dot_indicator"
+<com.github.fajaragungpramana.dotsindicator.DotsIndicator
+        android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -49,14 +36,12 @@ Define a view in your layout file:
         app:dotSelectedColor="@color/purple_500"
         app:dotSize="16dp"
         app:dotSpacing="4dp" />
-
-</RelativeLayout>
 ```
 
 To set with view pager:
 ```kotlin
 viewPager.adapter = Pager(this)
-dotIndicator.setWithViewPager(viewPager)
+dotIndicator.viewPager = viewPager
 ```
 
 ## Preview
@@ -99,9 +84,6 @@ Attribute for DotsIndicator
 | dotSelectedColor | #FF0000 | Set dot color when is selected |
 | dotSize | 16dp | Set dot size |
 | dotSpacing | 4dp | Set dot space |
-
-<b>Note:</b>
-For this version `0.0.1` please make sure, you set the value attribute `dotCount` in your layout xml file same with your view pager adapter size.
 
 ## License
 Copyright 2021 Fajar Agung Pramana
