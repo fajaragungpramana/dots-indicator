@@ -12,10 +12,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val viewPager = findViewById<ViewPager>(R.id.view_pager)
-        val dotIndicator = findViewById<DotsIndicator>(R.id.dot_indicator)
+        val dotIndicator = findViewById<DotsIndicator>(R.id.dots_indicator)
 
         viewPager.adapter = Pager(this)
-        dotIndicator.setWithViewPager(viewPager)
+        dotIndicator.viewPager = viewPager
 
     }
 
