@@ -36,6 +36,7 @@ class DotsIndicator @JvmOverloads constructor(
         mDotContainer = LinearLayout(context)
 
         initDots(R.drawable.bg_dot) { dot, param -> mDotContainer.addView(dot, param) }
+        onDotSelectedPosition(0)
 
         addView(mDotContainer)
     }
