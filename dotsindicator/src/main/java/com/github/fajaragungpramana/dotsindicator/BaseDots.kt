@@ -42,8 +42,8 @@ abstract class BaseDots(
             dotColor = it.getColor(dotStyle.color, Color.LTGRAY)
             dotCount = it.getInt(dotStyle.count, 5)
             dotSelectedColor = it.getColor(dotStyle.selectedColor, Color.RED)
-            dotSize = (it.getDimension(dotStyle.size, 32F) / 2F).toInt()
-            dotSpacing = (it.getDimension(dotStyle.spacing, 8F) / 2F).toInt()
+            dotSize = (it.getDimension(dotStyle.size, 32F)).toInt()
+            dotSpacing = (it.getDimension(dotStyle.spacing, 8F)).toInt()
         }.recycle()
     }
 
@@ -54,8 +54,8 @@ abstract class BaseDots(
 
         val params = LinearLayout.LayoutParams(dotSize ?: 0, dotSize ?: 0)
             .also {
-                it.marginStart = dotSpacing ?: 0
-                it.marginEnd = dotSpacing ?: 0
+                it.marginStart = dotSpacing ?: 0 / 2
+                it.marginEnd = dotSpacing ?: 0 / 2
             }
 
         repeat(dotCount ?: 0) { i ->
