@@ -18,7 +18,7 @@ allProjects {
 Add the dependency:
 ```gradle
 dependencies {
-	implementation 'com.github.fajaragungpramana:dots-indicator:0.0.3'
+	implementation 'com.github.fajaragungpramana:dots-indicator:0.0.4'
 }
 ```
 
@@ -45,8 +45,40 @@ dotIndicator.viewPager = viewPager
 ```
 
 ## Preview
-When i sliding the view pager.
-<a href="url"><img src="https://github.com/fajaragungpramana/assets/blob/master/DotsIndicator/GIF-210204_203635.gif" align="left" height="640" width="320" ></a>
+DotsIndicator.
+</br>
+<a href="url"><img src="https://github.com/fajaragungpramana/assets/blob/master/DotsIndicator/DotsIndicator.gif" align="left" height="640" width="320" ></a>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+ScaledDotsIndicator.
+</br>
+<a href="url"><img src="https://github.com/fajaragungpramana/assets/blob/master/DotsIndicator/ScaledDotsIndicator.gif" align="left" height="640" width="320" ></a>
 </br>
 </br>
 </br>
