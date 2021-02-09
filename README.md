@@ -76,37 +76,6 @@ DotsIndicator.
 </br>
 </br>
 
-ScaledDotsIndicator.
-</br>
-<a href="url"><img src="https://github.com/fajaragungpramana/assets/blob/master/DotsIndicator/ScaledDotsIndicator.gif" align="left" height="640" width="320" ></a>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-
 ## Documentation
 Attribute for DotsIndicator
 | Attribute Name | Default Value | Description |
