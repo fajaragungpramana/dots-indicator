@@ -2,118 +2,132 @@ package com.github.fajaragungpramana.dotsindicator
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.Gravity
-import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
+import android.widget.RelativeLayout
+import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.viewpager.widget.ViewPager
 import java.lang.NullPointerException
 
-open class DotsIndicator(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs) {
+open class DotsIndicator(context: Context, attrs: AttributeSet?) : RelativeLayout(context, attrs) {
 
-    protected val mDotList: ArrayList<View>
+    private lateinit var mDots: ArrayList<Dot>
 
-    protected val dotColor: Int
+    private lateinit var mDotSelected: Dot
+
+    protected var dotColor: Int
 
     protected var dotCount: Int
 
-    protected val dotSelectedColor: Int
+    protected var dotSelectedColor: Int
 
-    protected val dotSize: Float
+    protected var dotSize: Int
 
-    protected val dotSpacing: Float
+    protected var dotSpacing: Int
 
     var viewPager: ViewPager? = null
         set(value) {
             field = value
 
-            onPageSelected(field) { onPage(it) }
+            onPageSelected(field)
+
+            if (field != null) {
+                removeAllViews()
+                initDots()
+                initDotSelected()
+            }
         }
 
     init {
+        gravity = Gravity.CENTER
+
         context.obtainStyledAttributes(attrs, R.styleable.DotsIndicator).also {
             dotColor = it.getColor(R.styleable.DotsIndicator_dotColor, Color.LTGRAY)
             dotCount = it.getInt(R.styleable.DotsIndicator_dotCount, 5)
             dotSelectedColor = it.getColor(R.styleable.DotsIndicator_dotSelectedColor, Color.RED)
-            dotSize = it.getDimension(R.styleable.DotsIndicator_dotSize, 32F)
-            dotSpacing = it.getDimension(R.styleable.DotsIndicator_dotSpacing, 8F)
+            dotSize = it.getDimension(R.styleable.DotsIndicator_dotSize, 32F).toInt()
+            dotSpacing = (it.getDimension(R.styleable.DotsIndicator_dotSpacing, 8F) / 2).toInt()
         }.recycle()
 
-        mDotList = ArrayList()
-
-        initLayout()
+        init()
         initDots()
+        initDotSelected()
     }
 
-    private fun initLayout() {
-        gravity = Gravity.CENTER
-        orientation = HORIZONTAL
+    private fun init() {
+        mDots = ArrayList()
+        mDotSelected = Dot(context).also {
+            it.color = dotSelectedColor
+            it.width = dotSize
+            it.height = dotSize
+        }
     }
 
     private fun initDots() {
 
-        repeat(dotCount) { i ->
-            val dot = View(context).also {
-                it.background = ContextCompat.getDrawable(context, R.drawable.bg_dot)
-            }
-
-            (dot.background as GradientDrawable).also {
-                it.setColor(dotColor)
-                it.cornerRadius = dotSize
-            }
-
-            val param = LayoutParams(dotSize.toInt(), dotSize.toInt()).also {
-                it.marginStart = dotSpacing.toInt() / 2
-                it.marginEnd = dotSpacing.toInt() / 2
-            }
-
-            mDotList.add(dot)
-
-            addView(mDotList[i], param)
+        val dotContainer = LinearLayout(context).also {
+            it.orientation = LinearLayout.HORIZONTAL
         }
 
-        onPage(0)
+        val dotParams = LayoutParams(dotSize, dotSize).also {
+            it.marginStart = dotSpacing
+            it.marginEnd = dotSpacing
+        }
+
+        mDots.clear()
+        repeat(dotCount) {
+            val dot = Dot(context).also {
+                it.color = dotColor
+                it.width = dotSize
+                it.height = dotSize
+            }
+            mDots.add(dot)
+
+            dotContainer.addView(mDots[it], dotParams)
+        }
+
+        addView(dotContainer)
     }
 
-    private fun onPageSelected(viewPager: ViewPager?, position: (Int) -> Unit) {
-        viewPager?.also {
-
-            if (it.adapter != null) {
-                dotCount = it.adapter?.count ?: 0
-
-                removeAllViews()
-                initDots()
-
-                it.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-
-                    override fun onPageScrollStateChanged(state: Int) {}
-
-                    override fun onPageScrolled(
-                        position: Int,
-                        positionOffset: Float,
-                        positionOffsetPixels: Int
-                    ) {
-                    }
-
-                    override fun onPageSelected(position: Int) {
-                        position(position)
-                    }
-
-                })
-
-            } else
-                throw NullPointerException("No adapter ViewPager attached!")
+    private fun initDotSelected() {
+        val dotSelectedParams = LayoutParams(dotSize, dotSize).also {
+            it.marginStart = dotSpacing
+            it.marginEnd = dotSpacing
         }
+
+        addView(mDotSelected, dotSelectedParams)
     }
 
-    protected open fun onPage(position: Int) {
-        repeat(mDotList.size) {
-            (mDotList[it].background as GradientDrawable).setColor(
-                if (it == position) dotSelectedColor else dotColor
-            )
-        }
+    private fun onPageSelected(viewPager: ViewPager?) {
+        if (viewPager?.adapter != null) {
+            dotCount = viewPager.adapter?.count ?: 0
+
+            viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+                override fun onPageScrollStateChanged(state: Int) {}
+
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    onPageSelectedPosition(position)
+                }
+
+                override fun onPageSelected(position: Int) {}
+
+            })
+        } else
+            throw NullPointerException("No adapter ViewPager attached!")
+    }
+
+    protected open fun onPageSelectedPosition(position: Int) {
+        SpringAnimation(
+            mDotSelected,
+            SpringAnimation.TRANSLATION_X,
+            if (position == 0) 1F else mDots[position].x - dotSpacing
+        ).start()
     }
 
 }
